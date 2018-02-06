@@ -12,7 +12,7 @@
 <body>
 <div id="container">
 <div id="header">
-<h1 class="logotip">Repo name</h1>
+<h1 class="logotip">L-Moonloader Repository</h1>
 </div>
 <div id="content">
 <div id="left">

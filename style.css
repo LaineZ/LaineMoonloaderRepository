@@ -265,7 +265,6 @@ input[type=password] {
 	display:block;
 	padding: 15px 0px;
 }
-/********************* menu members ****************************/
 .menu ul{
 	list-style-position: inside;
 	list-style-type: disc;
@@ -284,24 +283,6 @@ input[type=password] {
 .menu ul li a:hover{
 	text-decoration:underline;
 	text-transform: uppercase;
-}
-.member{
-	display:inline;
-	float:left;
-	margin-left:10px;
-}
-.member span{
-	display:block;
-	text-align:center;
-	padding: 2px 0px 13px 0px;
-	text-transform: uppercase;
-
-}
-.member img{
-	width:75px;
-	height:70px;
-	border: solid 2px #999999;	
-
 }
 .clear{
 	clear:both;
