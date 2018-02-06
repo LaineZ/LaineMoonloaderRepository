@@ -1,0 +1,118 @@
+﻿body {
+background-color: black;
+}
+   .box1 { 
+    margin-top: 3%;
+	text-align: left;
+	background: #737373; /* Цвет фона */
+    width: 95%; /* Ширина блока */
+	box-shadow: 10px 10px #262626;
+   }
+   .box2 { 
+    margin-top: 1%;
+	text-align: left;
+	background: #737373; /* Цвет фона */
+    width: 95%; /* Ширина блока */
+    padding: 10px; /* Поля */
+	box-shadow: 10px 10px #262626;
+   }
+   .box_msg { 
+    margin-top: 10%;
+	text-align: left;
+	background: #737373; /* Цвет фона */
+    width: 300px; /* Ширина блока */
+    padding: 10px; /* Поля */
+	box-shadow: 10px 10px #262626;
+   }
+li:hover {
+  background-color: #660000;
+}
+li {
+list-style-type: none;
+}
+
+a {
+  font-family: 'Ubuntu Mono', monospace;
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  display: block;
+  padding: 6px 0 6px 6px;
+}
+.BarikLohOdnaStroka {
+display: inline-block;
+
+}
+a:hover {
+  color: #blue;
+}
+a:focus {
+  color: yellow;
+}
+.button {
+	font-family: 'Ubuntu Mono', monospace;
+    background-color: #404040;
+    border: solid 1px white;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+}
+.button-2 {
+	font-family: 'Ubuntu Mono', monospace;
+    background-color: #404040;
+    border: solid 1px white;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+}
+.button:hover {
+    background-color: #660000;
+    color: white;
+}
+input[type=text] {
+	font-family: 'Ubuntu Mono', monospace;
+    border: 4px white;
+	background-color: #4d4d4d;
+	color: white;
+}
+input[type=password] {
+	font-family: 'Ubuntu Mono', monospace;
+    border: 4px white;
+	background-color: #4d4d4d;
+	color: white;
+}
+input[type=text] {
+	font-family: 'Ubuntu Mono', monospace;
+    border: 4px white;
+	background-color: #4d4d4d;
+	color: white;
+}
+input[type=password] {
+	font-family: 'Ubuntu Mono', monospace;
+    border: 4px white;
+	background-color: #4d4d4d;
+	color: white;
+}
+textarea {
+	font-family: 'Ubuntu Mono', monospace;
+    border: 4px white;
+	background-color: #bfbfbf;
+	color: white;
+}
+h3 {
+	font-family: 'Ubuntu Mono', monospace;
+	color: white;
+	margin: 0px;
+
+}
+p {
+	font-family: 'Ubuntu Mono', monospace;
+	color: white;
+	margin: 0px;
+}

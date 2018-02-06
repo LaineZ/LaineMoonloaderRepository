@@ -1,20 +1,33 @@
-<!DOCTYPE HTML> 
- <html>
- <head>
- <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" rel="stylesheet"> 
- <link href="main_style.css" rel="stylesheet">
- <title>SAMPLaineRepository</title>
- </head>
-<body>
-<h1>Laine Moonloader package repository <a href="index.html">Main</a></h1>
-<form action="code.php" method="get">
-<p>Script name:</p> <input type="text" name="name"><br>
-<p>Script version:</p> <input type="text" name="version"><br>
-<p>Script description:</p> <textarea type="text" name="desc"></textarea><br>
-<p>Script config More info <a href="config_format.html">here:</a></p> <textarea type="text" name="depend"></textarea><br>
-<p>Script code:</p> <textarea type="text" name="code"></textarea><br>
-<input type="submit" value="Upload script!">
-</form>
-
-</body>
-</html> 
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Laine HOME</title>
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet"> 
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+	</head>
+	<body>
+		<div>
+			<center>
+				<div class="box1" style="padding-left: 15px; padding-top: 15px; padding-bottom: 15px;">
+					<h3><i class="fa fa-user-circle-o" aria-hidden="true"></i>  Upload script</h3>
+					<form action="upload.php" method="post" enctype="multipart/form-data">
+						<p><i class="fa fa-address-book" aria-hidden="true"></i>  Name:</p> <input size="32" type='text' name='name'> <br>
+						<p><i class="fa fa-code-fork" aria-hidden="true"></i>  path (default path: moonloader/):</p> <input size="32" type='text' name='path'> <br>
+						<p><i class="fa fa-code-fork" aria-hidden="true"></i>  Version:</p> <input size="32" type='text' name='version'> <br>
+						<p><i class="fa fa-sticky-note-o" aria-hidden="true"></i>  Description (Some html tags supported. Like: p, img, h3):</p>
+						<p><textarea rows="5" cols="32" type='text' name="desc"></textarea></p>
+						<p><i class="fa fa-sticky-note-o" aria-hidden="true"></i>  Dependecies ONLY IN FORMAT Package-Version e.g Luasocket-1.0:</p>
+						<p><textarea rows="5" cols="32" type='text' name="dep"></textarea></p>
+						<p><i class="fa fa-question" aria-hidden="true"></i>  Script: (Support only: .lua, .luac, .dll, .ini, .cfg)
+						<input type="file" name="pictures[]" />
+						<br>
+						<input type='submit' value='Upload!' class='button'>
+					</form>
+				</div>
+			</center>
+		</div>
+	</body>
+</html>
