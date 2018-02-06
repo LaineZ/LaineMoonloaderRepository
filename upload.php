@@ -14,7 +14,17 @@ foreach ($_FILES["pictures"]["error"] as $key => $error) {
 		file_put_contents($dirname . $_POST['name'] . ".desc", $_POST['desc']);
 		file_put_contents($dirname . $_POST['name'] . ".dep", $_POST['dep']);
 		file_put_contents("Packages_cl.list", $_POST['name'] . "-" . $_POST['version'] . "\n");
-		file_put_contents("Packages.list", sprintf("<a href='packageview.php?name=%s&ver=%s'>%s(%s) by %s</a><br>\n", $_POST['name'],$_POST['version'] , $_POST['name'], $_POST['version'], $_SESSION['login']), FILE_APPEND | LOCK_EX);
+		$up_template = "<div class='post'>
+				<div class='postheader'>
+				<h1>%s(%s) by %s</h1>
+				</div>
+				<div class='postcontent'>
+				<p>%s</p>
+				<a href='packageview.php?name=%s&ver=%s'><p>More info and get install command</p></a>
+				</div>
+				<div class='postfooter'></div>
+				</div>";
+		file_put_contents("Packages.list", sprintf($up_template, $_POST['name'], $_POST['version'], $_SESSION['login'], $_POST['desc'], $_POST['name'], $_POST['version']));
 		move_uploaded_file($tmp_name, $dirname . "/$name");
 		} else {
 		echo "Upload failed!";

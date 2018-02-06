@@ -6,11 +6,13 @@
   <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet"> 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,500&amp;subset=cyrillic" rel="stylesheet"> 
 </head>
 
 <body>
 <div id="container">
 <div id="header">
+<h1 class="logotip">Repo name</h1>
 </div>
 <div id="content">
 <div id="left">
@@ -42,7 +44,6 @@ function myFunction() {
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 </script>
-<div id="snackbar">Login: ok!</div>
 <?php
 						require("functions.php");
 						session_start();
@@ -66,7 +67,16 @@ function myFunction() {
 							session_destroy();
 							header("Location: index.php");
 							}
-							if ($_GET['fcn'] == "log") {
+							if ($_GET['fcn'] == "log") { // lol
+							echo '<div id="snackbar">Login: ok!</div>';
+							echo "<script>myFunction()</script>";
+							}
+							if ($_GET['fcn'] == "loh") { // lol
+							echo '<div id="snackbar">Login failed - Invalid username or password</div>';
+							echo "<script>myFunction()</script>";
+							}
+							if ($_GET['fcn'] == "loh_nf") { // lol
+							echo '<div id="snackbar">Login failed - User not found</div>';
 							echo "<script>myFunction()</script>";
 							}
 						}
@@ -79,24 +89,22 @@ function myFunction() {
 
 </div>
 <div id="middle">
-<div class="post">
-<div class="postheader">
-<h1>Rip(1.0) by Laine_prikol</h1>
-</div>
-<div class="postcontent">
-<p>TODO: insert php code here</p>
-</div>
-<div class="postfooter"></div>
-</div>
-<div class="post">
-<div class="postheader">
-<h1>package 2</h1>
-</div>
-<div class="postcontent">
-<p>какой-то рип написан</p>
-</div>
-<div class="postfooter"></div>
-</div>
+  <?php
+  if(file_exists("Packages.list")) {
+  echo file_get_contents("Packages.list");
+  } else {
+  echo "<div class='post'>
+				<div class='postheader'>
+				<h1>No packages in this repository</h1>
+				</div>
+				<div class='postcontent'>
+				<p>Make sure that you have correctly installed the site, check the rights of the file Repository_programs.list. Or maybe just not yet posted new packages, hmmmmm...? </p>
+				</div>
+				<div class='postfooter'></div>
+				</div>
+  ";
+  }
+  ?>
 </div>
 </div>
 <div id="footer">
