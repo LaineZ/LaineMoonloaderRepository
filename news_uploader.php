@@ -36,22 +36,30 @@
 <div id="middle">
 <div class='post'>
 				<div class='postheader'>
-  <?php
-  echo "<h3>" . $_GET['name'] . "</h3>";
-  ?>
+				<h1>Upload news</h1>
 				</div>
-				<div class='postcontent'>
-  <?php
-				  require("functions.php");
-				  if (file_exists(GetScriptPath($_GET['name'], $_GET['ver']) . $_GET['name'] . ".info")) {
-					  echo "<p><strong>Description:</strong><br>" . file_get_contents(GetScriptPath($_GET['name'], $_GET['ver']) . $_GET['name'] . ".desc") . "</p>";
-					  echo "<p><strong>Version:</strong><br>" . ReadFileInfo(GetScriptPath($_GET['name'], $_GET['ver']) . $_GET['name'] . ".info", 2) . "</p>";
-					  echo "<p><strong>Install command</strong>: /mr_install " . $_GET['name'] . "-" . $_GET['ver'] . "</p>";
-				  } else {
-					echo "<p><strong>Sorry, package not found!</strong></p>";
-				  }
-				  ?>
-				</div>
+				<?php
+				session_start();
+				require("functions.php");
+				if(isset($_SESSION['login'])) {
+				$a = ReadFileInfo("accounts/" . $_SESSION['login'] . ".user", 4);
+					if ($a == 0) {
+					echo "<p>Not allowed content for you!</p>";
+					} else {
+					echo '<div class="postcontent">
+					<form action="upload_news.php" method="post" enctype="multipart/form-data">
+						<p>Name:</p> <input size="32" type="text" name="name"> <br>
+						<p> News content:</p>
+						<p><textarea rows="10" cols="32" type="text" name="desc"></textarea></p>
+						<br>
+						<input type="submit" value="Upload!" class="button">
+					</form>
+				</div>';
+					}
+				} else {
+				echo "<p>Unauthrized to use that!</p>";
+				}
+				?>
 				<div class='postfooter'></div>
 				</div>
 </div>

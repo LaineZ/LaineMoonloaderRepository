@@ -2,14 +2,14 @@
 <?php
 session_start();
 foreach ($_FILES["pictures"]["error"] as $key => $error) {
-    if ($error == UPLOAD_ERR_OK) {
+    if ($error == UPLOAD_ERR_OK and isset($_SESSION['login'])) {
         $tmp_name = $_FILES["pictures"]["tmp_name"][$key];
         $name = basename($_FILES["pictures"]["name"][$key]);
 		$ext = end((explode(".", $name))); # extra () to prevent notice
 		if($ext == "lua" or $ext == "luac" or $ext == "ini" or $ext == "cfg" or $ext == "dll") {
 		$dirname = "data/" . $_POST['name'] . "-" . $_POST['version'] . "/";
 		mkdir($dirname, 0700);		
-		file_put_contents($dirname . $_POST['name'] . ".info", $name . "\n" . $_POST['name'] . "\n" . $_POST['version'] . "\n" . $_POST['path'] . $name . "\n");
+		file_put_contents($dirname . $_POST['name'] . ".info", $name . "\n" . $_POST['name'] . "\n" . $_POST['version'] . "\n" . $_POST['path'] . $name . "\n" . $_SESSION['login'] . "\n");
 		file_put_contents($dirname . $_POST['name'] . ".desc", $_POST['desc']);
 		file_put_contents($dirname . $_POST['name'] . ".dep", $_POST['dep']);
 		file_put_contents("Packages_cl.list", $_POST['name'] . "-" . $_POST['version'] . "\n");

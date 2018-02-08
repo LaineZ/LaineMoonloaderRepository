@@ -15,15 +15,15 @@
 				<div class="box_msg">
 				<h3>Register</h3>
 				<?php
-				if (strlen($_POST['login']) == 0 or strlen($_POST['pass']) == 0 or file_exists("accounts/" . $_POST['login'] . ".user")) {
+				if (strlen($_POST['login']) == 0 or strlen($_POST['pass']) == 0 or file_exists("accounts/" . $_POST['login'] . ".user") or $_POST['pass'] != $_POST['passcon']) {
 				header("Location: index.php?fcn=reg_f");
 				echo "<p>Register failed! Check details!</p>";
 				} else {
-				header("Location: index.php?fcn=reg_ok");
 				session_start();
 				$_SESSION['login'] = $_POST['login'];
 				$_SESSION['pass']  = $_POST['pass'];
-				file_put_contents("accounts/" . $_POST['login'] . ".user", sprintf("%s\n%s\n%d\n%d", $_POST['login'], $_POST['pass'], 0, 0));
+				file_put_contents("accounts/" . $_POST['login'] . ".user", sprintf("%s\n%s\n%d\n%d\n%d", $_POST['login'], md5($_POST['pass']), 0, 0, 0));
+				header("Location: index.php?fcn=reg_ok");
 				}
 				?>
 				<li><a href="index.php">Main</a></li>

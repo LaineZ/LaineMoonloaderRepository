@@ -58,7 +58,7 @@ function myFunction() {
 							<br>
 							<input type='submit' value='Login' class='button'>
 						</form>
-							<a href='register.php'><p>Register</p></a>";
+							<a href='reg.html'><p>Register</p></a>";
 						}
 						if (isset($_GET['fcn'])) {
 							if ($_GET['fcn'] == "logout") {
@@ -66,6 +66,9 @@ function myFunction() {
 							header("Location: index.php");
 							}
 							if ($_GET['fcn'] == "log") { // lol
+							echo '<div id="snackbar">Login: ok!</div>';
+							echo "<script>myFunction()</script>";
+							}							if ($_GET['fcn'] == "log") { // lol
 							echo '<div id="snackbar">Login: ok!</div>';
 							echo "<script>myFunction()</script>";
 							}
@@ -93,6 +96,14 @@ function myFunction() {
 							echo '<div id="snackbar">Register failed! Check details</div>';
 							echo "<script>myFunction()</script>";
 							}
+							if ($_GET['fcn'] == "loh_na") { // lol
+							echo '<div id="snackbar">Register failed! Check details</div>';
+							echo "<script>myFunction()</script>";
+							}
+							if ($_GET['fcn'] == "news_up") { // lol
+							echo '<div id="snackbar">Register failed! Check details</div>';
+							echo "<script>myFunction()</script>";
+							}
 						}
 						?>
 
@@ -104,19 +115,38 @@ function myFunction() {
 </div>
 <div id="middle">
   <?php
-  if(file_exists("Packages.list")) {
-  echo file_get_contents("Packages.list");
+  if(!isset($_GET['type'])) {
+	  if(file_exists("Packages.list")) {
+	  echo file_get_contents("Packages.list");
+	  } else {
+	  echo "<div class='post'>
+					<div class='postheader'>
+					<h1>No packages in this repository</h1>
+					</div>
+					<div class='postcontent'>
+					<p>Make sure that you have correctly installed the site, check the rights of the file Repository_programs.list. Or maybe just not yet posted new packages, hmm...? </p>
+					</div>
+					<div class='postfooter'></div>
+					</div>
+	  ";
+	  }
   } else {
-  echo "<div class='post'>
-				<div class='postheader'>
-				<h1>No packages in this repository</h1>
-				</div>
-				<div class='postcontent'>
-				<p>Make sure that you have correctly installed the site, check the rights of the file Repository_programs.list. Or maybe just not yet posted new packages, hmmmmm...? </p>
-				</div>
-				<div class='postfooter'></div>
-				</div>
-  ";
+	  if($_GET['type'] == "news") {
+	if(file_exists("news.list")) {
+		  echo file_get_contents("news.list");
+		  } else {
+		  echo "<div class='post'>
+						<div class='postheader'>
+						<h1>No news in this repository</h1>
+						</div>
+						<div class='postcontent'>
+						<p>Make sure that you have correctly installed the site, check the rights of the file news.list. Or maybe just not yet posted new news, hmm...? </p>
+						</div>
+						<div class='postfooter'></div>
+						</div>
+		  ";
+		  }	  
+	  }
   }
   ?>
 </div>
