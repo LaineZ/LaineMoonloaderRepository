@@ -4,8 +4,6 @@ A simple repository that was created specifically for the Monloader. and allows 
 ## TODO:
 **Server**
 
-*Login/Register/Account system: 90% done
-
 *Packages manage/Upload: 50% done
 
 *Admin panel/Repository manage: 0% done
