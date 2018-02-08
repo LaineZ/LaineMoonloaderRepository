@@ -22,12 +22,10 @@
 </div>
 <div class="menucontent">
 <ul>
-<li><a href="http://www.freewebsitetemplates.com">All Packages</a></li>
-<li><a href="http://www.freewebsitetemplates.com">News</a></li>
-<li><a href="http://www.freewebsitetemplates.com">Uploader</a></li>
-<li><a href="http://www.freewebsitetemplates.com">Your packages</a></li>
-<li><a href="http://www.freewebsitetemplates.com">Libs</a></li>
-<li><a href="http://www.freewebsitetemplates.com">Scripts</a></li>
+<li><a href="index.php">All Packages</a></li>
+<li><a href="index.php?type=news">News</a></li>
+<li><a href="uploader.html">Uploader</a></li>
+<li><a href="user.php?fcn=manage">Your packages</a></li>
 </ul>
 </div>
 <div class="menufooter"></div>
@@ -77,6 +75,22 @@ function myFunction() {
 							}
 							if ($_GET['fcn'] == "loh_nf") { // lol
 							echo '<div id="snackbar">Login failed - User not found</div>';
+							echo "<script>myFunction()</script>";
+							}
+							if ($_GET['fcn'] == "up_fail") { // lol
+							echo '<div id="snackbar">Upload faided, check your input details</div>';
+							echo "<script>myFunction()</script>";
+							}
+							if ($_GET['fcn'] == "up_ok") { // lol
+							echo '<div id="snackbar">Upload: OK!</div>';
+							echo "<script>myFunction()</script>";
+							}
+							if ($_GET['fcn'] == "reg_ok") { // lol
+							echo '<div id="snackbar">Register: OK!</div>';
+							echo "<script>myFunction()</script>";
+							}
+							if ($_GET['fcn'] == "reg_f") { // lol
+							echo '<div id="snackbar">Register failed! Check details</div>';
 							echo "<script>myFunction()</script>";
 							}
 						}

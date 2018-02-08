@@ -113,6 +113,13 @@ input[type=password] {
 	background-color: #4d4d4d;
 	color: white;
 }
+textarea {
+	font-size: 12px;
+	font-family: 'Ubuntu Mono', monospace;
+    border: 4px white;
+	background-color: #4d4d4d;
+	color: white;
+}
 .button {
 	margin: 10px;
 	font-family: 'Roboto', sans-serif;

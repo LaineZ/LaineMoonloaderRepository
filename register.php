@@ -15,10 +15,11 @@
 				<div class="box_msg">
 				<h3>Register</h3>
 				<?php
-				if (strlen($_POST['login']) == 0 or strlen($_POST['pass']) == 0) {
-				echo "<p>Register failed! Login or password cannot be empty!</p>";
+				if (strlen($_POST['login']) == 0 or strlen($_POST['pass']) == 0 or file_exists("accounts/" . $_POST['login'] . ".user")) {
+				header("Location: index.php?fcn=reg_f");
+				echo "<p>Register failed! Check details!</p>";
 				} else {
-				echo "<p>Register ok!</p>";
+				header("Location: index.php?fcn=reg_ok");
 				session_start();
 				$_SESSION['login'] = $_POST['login'];
 				$_SESSION['pass']  = $_POST['pass'];

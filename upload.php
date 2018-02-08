@@ -7,7 +7,6 @@ foreach ($_FILES["pictures"]["error"] as $key => $error) {
         $name = basename($_FILES["pictures"]["name"][$key]);
 		$ext = end((explode(".", $name))); # extra () to prevent notice
 		if($ext == "lua" or $ext == "luac" or $ext == "ini" or $ext == "cfg" or $ext == "dll") {
-	    echo "Upload OK!";
 		$dirname = "data/" . $_POST['name'] . "-" . $_POST['version'] . "/";
 		mkdir($dirname, 0700);		
 		file_put_contents($dirname . $_POST['name'] . ".info", $name . "\n" . $_POST['name'] . "\n" . $_POST['version'] . "\n" . $_POST['path'] . $name . "\n");
@@ -26,8 +25,9 @@ foreach ($_FILES["pictures"]["error"] as $key => $error) {
 				</div>";
 		file_put_contents("Packages.list", sprintf($up_template, $_POST['name'], $_POST['version'], $_SESSION['login'], $_POST['desc'], $_POST['name'], $_POST['version']));
 		move_uploaded_file($tmp_name, $dirname . "/$name");
+		header("Location: index.php?fcn=up_ok");
 		} else {
-		echo "Upload failed!";
+		header("Location: index.php?fcn=up_fail");
 		}
     }
 }

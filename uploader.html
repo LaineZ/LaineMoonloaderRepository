@@ -1,33 +1,65 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Laine HOME</title>
-		<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet"> 
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/font-awesome.min.css">
-	</head>
-	<body>
-		<div>
-			<center>
-				<div class="box1" style="padding-left: 15px; padding-top: 15px; padding-bottom: 15px;">
-					<h3><i class="fa fa-user-circle-o" aria-hidden="true"></i>  Upload script</h3>
+<head>
+  <meta charset="UTF-8">
+  <title>LMR Repository</title>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,500&amp;subset=cyrillic" rel="stylesheet"> 
+</head>
+
+<body>
+<div id="container">
+<div id="header">
+<h1 class="logotip">L-Moonloader Repository</h1>
+</div>
+<div id="content">
+<div id="left">
+<div class="menu">
+<div class="menuheader">
+<h3>Show</h3>
+</div>
+<div class="menucontent">
+<ul>
+<li><a href="index.php">All Packages</a></li>
+<li><a href="index.php?type=news">News</a></li>
+<li><a href="uploader.html">Uploader</a></li>
+<li><a href="user.php?fcn=manage">Your packages</a></li>
+</ul>
+</div>
+<div class="menufooter"></div>
+</div>
+</div>
+
+</div>
+<div id="middle">
+<div class='post'>
+				<div class='postheader'>
+				<h1>Upload package</h1>
+				</div>
+				<div class='postcontent'>
 					<form action="upload.php" method="post" enctype="multipart/form-data">
-						<p><i class="fa fa-address-book" aria-hidden="true"></i>  Name:</p> <input size="32" type='text' name='name'> <br>
-						<p><i class="fa fa-code-fork" aria-hidden="true"></i>  path (default path: moonloader/):</p> <input size="32" type='text' name='path'> <br>
-						<p><i class="fa fa-code-fork" aria-hidden="true"></i>  Version:</p> <input size="32" type='text' name='version'> <br>
-						<p><i class="fa fa-sticky-note-o" aria-hidden="true"></i>  Description (Some html tags supported. Like: p, img, h3):</p>
+						<p>Name:</p> <input size="32" type='text' name='name'> <br>
+						<p>Path (default path: moonloader/):</p> <input size="32" type='text' name='path'> <br>
+						<p>Version:</p> <input size="32" type='text' name='version'> <br>
+						<p>WARNING: To correct use version control, please enter in sem-ver format MAJOR.MINOR.PATCH (e.g 1.2.3 or 1.228.1337)
+						<p> Description (Some html tags supported. Like: p, img, h3):</p>
 						<p><textarea rows="5" cols="32" type='text' name="desc"></textarea></p>
 						<p><i class="fa fa-sticky-note-o" aria-hidden="true"></i>  Dependecies ONLY IN FORMAT Package-Version e.g Luasocket-1.0:</p>
 						<p><textarea rows="5" cols="32" type='text' name="dep"></textarea></p>
-						<p><i class="fa fa-question" aria-hidden="true"></i>  Script: (Support only: .lua, .luac, .dll, .ini, .cfg)
-						<input type="file" name="pictures[]" />
+						<p>Script: (Support only: .lua, .luac, .dll, .ini, .cfg)</p>
+						<input class="button" type="file" name="pictures[]" />
 						<br>
 						<input type='submit' value='Upload!' class='button'>
 					</form>
+				
 				</div>
-			</center>
-		</div>
-	</body>
-</html>
+				<div class='postfooter'></div>
+				</div>
+</div>
+</div>
+<div id="footer">
+<span><p>LMR Repository by Laine_prikol and kotik_prikol 2018</p></span> </div>
+</div>
+</body></html>
