@@ -64,11 +64,8 @@ function myFunction() {
 							if ($_GET['fcn'] == "logout") {
 							session_destroy();
 							header("Location: index.php");
-							}
+							}						
 							if ($_GET['fcn'] == "log") { // lol
-							echo '<div id="snackbar">Login: ok!</div>';
-							echo "<script>myFunction()</script>";
-							}							if ($_GET['fcn'] == "log") { // lol
 							echo '<div id="snackbar">Login: ok!</div>';
 							echo "<script>myFunction()</script>";
 							}

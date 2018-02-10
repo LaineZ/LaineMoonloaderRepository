@@ -48,10 +48,9 @@
 					} else {
 					echo '<div class="postcontent">
 					<form action="upload_news.php" method="post" enctype="multipart/form-data">
+						<h3>Ban user:</h3>
 						<p>Name:</p> <input size="32" type="text" name="name"> <br>
-						<p> News content:</p>
-						<p><textarea rows="10" cols="32" type="text" name="content"></textarea></p>
-						<br>
+						<p>Days:</p> <input size="4" type="text" name="name"> <br>
 						<input type="submit" value="Upload!" class="button">
 					</form>
 				</div>';

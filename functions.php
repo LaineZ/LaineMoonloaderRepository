@@ -43,12 +43,6 @@ function ChangeUserPassword($user, $value) {
 	unlink("accounts/" . $user . ".user"); // для крутости, чтобы мусор не попал!
 	file_put_contents("accounts/" . $user . ".user", sprintf("%s\n%s\n%d\n%d", $l, $value, $pub, $rep));
 }
-function ShowToast($zapros, $value) {
-	if ($_GET['fcn'] == $zapros) { // lol
-		echo sprintf('<div id="snackbar">%s</div>', $value);
-		echo "<script>myFunction()</script>";
-	}
-}
 function GetScriptPath($name, $ver) {
 	return "data/" . $name . "-" . $ver . "/";
 }
