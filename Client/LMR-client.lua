@@ -1,7 +1,8 @@
 require("lib.moonloader")
 local http = require("socket.http")
-server = "127.0.0.1/LaineMoonloaderRepository-master"
+server = "pussy2018.ga/LaineMoonloaderRepository/"
 packages_names = {}
+updates = {}
 function sendHttpRequestAndSave(paramtr, file)
 print("http://"..server.."/"..paramtr)
 local body, code = http.request("http://"..server.."/"..paramtr)
@@ -38,14 +39,37 @@ local _, pack_info = getLine(tmpname)
 sendHttpRequestAndSave("data/"..name_ver.."/"..pack_info[1], pack_info[4])
 sampAddChatMessage("Download finished!", 0x00ff00)
 end
-
+function CheckVer(versus)
+	if versus == nil then
+		versus = 1
+	end
+end
 function main()
 sendHttpRequestAndSave("Packages_cl.list", "moonloader/pack.list")
 numbers, packages_names = getLine('moonloader/pack.list')
 while not isSampAvailable() do wait(100) end
+if io.open("moonloader/local_repository.data", "r") ~= nil then
+	local _, package_names = getLine('moonloader/pack.list')
+	local _, package_names_l = getLine('moonloader/local_repository.data')
+	sampAddChatMessage("Checking for package updates!", 0x00ff00)
+	for i = 1, #package_names_l do
+		local _, name =  string.match(package_names[i], "(%S*)-(%S*)")
+		local _, name_l =  string.match(package_names_l[i], "(%S*)-(%S*)")
+		local ver1, ver2, ver3 = string.match(name, "(%d+)%.(%d+)%.(%d+)")
+		local ver1_l, ver2_l, ver3_l = string.match(name_l, "(%d+)%.(%d+)%.(%d+)")
+		 ver1, ver2, ver3 = ver1 or 0, ver2 or 0, ver3 or 0
+		 ver1_l, ver2_l, ver3_l = ver1_l or 0, ver2_l or 0, ver3_l or 0
+				if name == name_l and ver1 > ver1_l or ver2 > ver2_l or ver3 > ver3_l then
+				sampAddChatMessage("Update for package: "..package_names[i].." Local version: "..package_names_l[i], -1)
+				else
+				print("No updates available for package: ", package_names[i], package_names_l)
+				end
+	sampAddChatMessage("Update checking: ok", 0x00ff00)
+	end
+end
 sampAddChatMessage("LaineMoonloaderRepository", 0x00ff00)
 sampAddChatMessage("(C) 2018 by Laine_prikol kotik_prikol | Client version: dev-0.1 for dev-0.1s | For {808080}Blast{4993C5}.hk", -1)
-sampAddChatMessage("Total packages: "..num, 0x00ff00)
+sampAddChatMessage("Total packages: "..tostring(num), 0x00ff00)
 sampRegisterChatCommand("mr_install", lmr_install)
 sampRegisterChatCommand("packages_list", packages_list)
 	while true do
@@ -76,7 +100,11 @@ else
 	for i = 0, dep_num do
 		if dep_names[i] ~= nil then
 		local dep_name, _ = string.match(dep_names[i],"(%S*)-(%S*)")
-		DownloadProgram(dep_names[i], dep_name)
+		if dep_name == nil then
+			sampAddChatMessage("Error while downloading dependencies: invalid format", 0xff0000)
+			else
+			DownloadProgram(dep_names[i], dep_name)
+			end
 		end
 	end
 	DownloadProgram(param, names)
