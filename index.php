@@ -101,6 +101,10 @@ function myFunction() {
 							echo '<div id="snackbar">Register failed! Check details</div>';
 							echo "<script>myFunction()</script>";
 							}
+							if ($_GET['fcn'] == "loh_ban") { // lol
+							echo '<div id="snackbar">Your account has been banned by the repository administrator!</div>';
+							echo "<script>myFunction()</script>";
+							}
 						}
 						?>
 
@@ -149,6 +153,6 @@ function myFunction() {
 </div>
 </div>
 <div id="footer">
-<span><p>LMR Repository by Laine_prikol and kotik_prikol 2018</p></span> </div>
+<span><p>LMR Repository by Laine_prikol and kotik_prikol 2018 | This a alpha version of this repository, please report bugs on <a href="https://github.com/LaineZ/LaineMoonloaderRepository">GitHub</a> or <a href="https://blast.hk/threads/20306/">BlastHack Thread</a></p></span></div>
 </div>
 </body></html>

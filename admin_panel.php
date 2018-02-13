@@ -36,22 +36,35 @@
 <div id="middle">
 <div class='post'>
 				<div class='postheader'>
-				<h1>Upload news</h1>
+				<h1>Admin panel - Select action</h1>
 				</div>
 				<?php
 				session_start();
 				require("functions.php");
+				if(isset($_POST['name']) and isset($_POST['param'])) {
+				  if(isset($_POST['ban'])) {
+				  echo "<p>User ban: " . $_POST['name'];
+				  }
+				  if(isset($_POST['uu'])) {
+				  echo "<p>User unban: " . $_POST['name'];
+				  }
+				}
 				if(isset($_SESSION['login'])) {
 				$a = ReadFileInfo("accounts/" . $_SESSION['login'] . ".user", 4);
 					if ($a == 0) {
 					echo "<p>Not allowed content for you!</p>";
 					} else {
 					echo '<div class="postcontent">
-					<form action="upload_news.php" method="post" enctype="multipart/form-data">
-						<h3>Ban user:</h3>
-						<p>Name:</p> <input size="32" type="text" name="name"> <br>
-						<p>Days:</p> <input size="4" type="text" name="name"> <br>
-						<input type="submit" value="Upload!" class="button">
+					<form action="admin_panel.php" method="post" enctype="multipart/form-data">
+						<p><input name="ban" type="radio" value="none">Ban user</p>
+						<p><input name="dp" type="radio" value="none">Delete package (Param: package: NAME-VERSION)</p>
+						<p><input name="dap" type="radio" value="none">Delete all packages <strong>WARNING: THIS ACTION CANNOT BE UNDONE!</strong></p>
+						<p><input name="dua" type="radio" value="none">Delete user account <strong>WARNING: THIS ACTION CANNOT BE UNDONE!</strong></p>
+						<p><input name="uu" type="radio" value="none">Unban user</p>
+						<p><input name="gar" type="radio" value="none">Give admin rights (Param: adminlevel 0-3)</p>
+						<p>Name:</p> <input size="40" type="text" name="name"> <br>
+						<p>Param:</p> <input size="40" type="text" name="param"> <br>
+						<input type="submit" value="Change user info" class="button">
 					</form>
 				</div>';
 					}

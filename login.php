@@ -10,6 +10,11 @@ if(file_exists("accounts/" . $_POST['login'] . ".user")) {
 		echo "<p>Login failed!</p>";
 		header("Location: index.php?fcn=loh");
 	}
+	if (trim(ReadFileInfo("accounts/" . $_POST['login'] . ".user", 4), "\n") == "-1") {
+		echo "<p>You banned from this repository!</p>";
+		header("Location: index.php?fcn=loh_ban");
+		session_destroy();
+	}
 } else {
 		echo "<p>Login failed!</p>";
 		header("Location: index.php?fcn=loh_nf");
