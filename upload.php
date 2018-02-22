@@ -21,10 +21,11 @@ foreach ($_FILES["pictures"]["error"] as $key => $error) {
 				<div class='postcontent'>
 				<p>%s</p>
 				<a href='packageview.php?name=%s&ver=%s'><p>More info and get install command</p></a>
+				<p><a href='index.php?fcn=rep_p&user=%s'>Reputation +</a> <a href='index.php?fcn=rep_m&user=%s'>Reputation -</a></p>
 				</div>
 				<div class='postfooter'></div>
 				</div>\n";
-		file_put_contents("Packages.list", sprintf($up_template, $_POST['name'], $_POST['version'], $_SESSION['login'], $_POST['desc'], $_POST['name'], $_POST['version']), FILE_APPEND | LOCK_EX);
+		file_put_contents("Packages.list", sprintf($up_template, $_POST['name'], $_POST['version'], $_SESSION['login'], $_POST['desc'], $_POST['name'], $_POST['version'], $_SESSION['login'], $_SESSION['login']), FILE_APPEND | LOCK_EX);
 		move_uploaded_file($tmp_name, $dirname . "/$name");
 		header("Location: index.php?fcn=up_ok");
 		ChangeUserPublics($_SESSION['login'], 1);

@@ -105,6 +105,32 @@ function myFunction() {
 							echo '<div id="snackbar">Your account has been banned by the repository administrator!</div>';
 							echo "<script>myFunction()</script>";
 							}
+							if ($_GET['fcn'] == "rep_p" and isset($_GET['user'])) { // lol
+							if ($_SESSION['reptime'] < date('i')) {
+							echo '<div id="snackbar">rep+</div>';
+							echo "<script>myFunction()</script>";
+							ChangeUserReputaition($_GET['user'], 1, false);
+							$_SESSION['reptime'] = date('i');
+							} else {
+							echo '<div id="snackbar">You cannot change reputation you can only change in ' . $_SESSION['reptime'] . ' minutes </div>';
+							echo "<script>myFunction()</script>";
+							echo $_SESSION['reptime'];
+							echo date('i');
+							}
+							}
+						if ($_GET['fcn'] == "rep_m" and isset($_GET['user'])) { // lol
+								if ($_SESSION['reptime'] < date('i')) {
+								echo '<div id="snackbar">rep+</div>';
+								echo "<script>myFunction()</script>";
+								ChangeUserReputaition($_GET['user'], 1, true);
+								$_SESSION['reptime'] = date('i');
+								} else {
+								echo '<div id="snackbar">You cannot change reputation you can only change in ' . $_SESSION['reptime'] . ' minutes </div>';
+								echo "<script>myFunction()</script>";
+								echo $_SESSION['reptime'];
+								echo date('i');
+								}
+								}
 						}
 						?>
 
