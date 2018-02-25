@@ -1,6 +1,6 @@
 LaineMoonloaderRepository (Project name)
 =======
-A simple repository that was created specifically for the Monloader. and allows you to download files, easy version control, easy customization of dependencies and **much more**.
+A simple repository that was created specifically for the Moonloader. and allows you to download files, easy version control, easy customization of dependencies and **much more**.
 
 Server written on vanila version of PHP and without dependencies
 
