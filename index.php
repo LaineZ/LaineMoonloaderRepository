@@ -25,7 +25,6 @@
 <li><a href="index.php">All Packages</a></li>
 <li><a href="index.php?type=news">News</a></li>
 <li><a href="uploader.html">Uploader</a></li>
-<li><a href="user.php?fcn=manage">Your packages</a></li>
 </ul>
 </div>
 <div class="menufooter"></div>
@@ -45,6 +44,24 @@ function myFunction() {
 <?php
 						require("functions.php");
 						session_start();
+						function SetupRepTimer($reptype) {
+							$timer = 60 - (time() - $_SESSION['time']);
+							if($timer > 0){
+							echo '<div id="snackbar">Please wait '. $timer . ' seconds before change reputation </div>';
+							echo "<script>myFunction()</script>";
+							}else{
+							if ($reptype) {
+							ChangeUserReputaition($_GET['user'], 1, false);
+							echo '<div id="snackbar">You rate positive!</div>';
+							echo "<script>myFunction()</script>";	
+							} else {
+							ChangeUserReputaition($_GET['user'], 1, true);
+							echo '<div id="snackbar">You rate negative!</div>';
+							echo "<script>myFunction()</script>";	
+							}
+							}
+							$_SESSION['time'] = time();
+						}
 						if (isset($_SESSION['login'])) {
 						$l = $_SESSION['login'];
 					    $p = ReadFileInfo("accounts/" . $_SESSION['login'] . ".user", 2);
@@ -98,39 +115,27 @@ function myFunction() {
 							echo "<script>myFunction()</script>";
 							}
 							if ($_GET['fcn'] == "news_up") { // lol
-							echo '<div id="snackbar">Register failed! Check details</div>';
+							echo '<div id="snackbar">News uploaded to news page successfully</div>';
+							echo "<script>myFunction()</script>";
+							}
+							if ($_GET['fcn'] == "news_fail") { // lol
+							echo '<div id="snackbar">News upload error: error updating file</div>';
 							echo "<script>myFunction()</script>";
 							}
 							if ($_GET['fcn'] == "loh_ban") { // lol
 							echo '<div id="snackbar">Your account has been banned by the repository administrator!</div>';
 							echo "<script>myFunction()</script>";
 							}
-							if ($_GET['fcn'] == "rep_p" and isset($_GET['user'])) { // lol
-							if ($_SESSION['reptime'] < date('i')) {
-							echo '<div id="snackbar">rep+</div>';
-							echo "<script>myFunction()</script>";
-							ChangeUserReputaition($_GET['user'], 1, false);
-							$_SESSION['reptime'] = date('i');
-							} else {
-							echo '<div id="snackbar">You cannot change reputation you can only change in ' . $_SESSION['reptime'] . ' minutes </div>';
-							echo "<script>myFunction()</script>";
-							echo $_SESSION['reptime'];
-							echo date('i');
-							}
-							}
-						if ($_GET['fcn'] == "rep_m" and isset($_GET['user'])) { // lol
-								if ($_SESSION['reptime'] < date('i')) {
-								echo '<div id="snackbar">rep+</div>';
-								echo "<script>myFunction()</script>";
-								ChangeUserReputaition($_GET['user'], 1, true);
-								$_SESSION['reptime'] = date('i');
-								} else {
-								echo '<div id="snackbar">You cannot change reputation you can only change in ' . $_SESSION['reptime'] . ' minutes </div>';
-								echo "<script>myFunction()</script>";
-								echo $_SESSION['reptime'];
-								echo date('i');
+							if($_GET['fcn'] == "rep_p") {
+								if ($_GET['user'] !== $_SESSION['login']) {
+								SetupRepTimer(true);
 								}
+							}
+							if($_GET['fcn'] == "rep_m") {
+								if ($_GET['user'] !== $_SESSION['login']) {
+								SetupRepTimer(false);
 								}
+							}
 						}
 						?>
 
@@ -142,6 +147,12 @@ function myFunction() {
 </div>
 <div id="middle">
   <?php
+  if(isset($_SESSION['login'])) {
+  $a = ReadFileInfo("accounts/" . $_SESSION['login'] . ".user", 4);
+	  if ($a > 0) {
+	  echo("<a href='admin_panel.php'><p>Admin panel</p></a>");
+	  }
+  }
   if(!isset($_GET['type'])) {
 	  if(file_exists("Packages.list")) {
 	  echo file_get_contents("Packages.list");
@@ -159,6 +170,9 @@ function myFunction() {
 	  }
   } else {
 	  if($_GET['type'] == "news") {
+	  if ($a > 0) {
+	  echo("<a href='news_uploader.php'><p>Upload news</p></a>");
+	  }
 	if(file_exists("news.list")) {
 		  echo file_get_contents("news.list");
 		  } else {

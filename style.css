@@ -1,10 +1,10 @@
 body {
-	background-image:url(images/background.gif);
+	background-image:url(images/background.png);
 	font-family: 'Roboto', sans-serif;
 	font-size: 15px;
 	margin: 0px;
 	padding: 0px;
-	background-repeat: repeat-x;
+	background-repeat: repeat;
 	background-color: #000000;
 		text-align: center;
 }

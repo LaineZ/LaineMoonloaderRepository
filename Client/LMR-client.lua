@@ -1,6 +1,6 @@
 require("lib.moonloader")
 local http = require("socket.http")
-server = "pussy2018.ga/LaineMoonloaderRepository/"
+server = "185.40.31.127/LaineMoonloaderRepository"
 packages_names = {}
 updates = {}
 function sendHttpRequestAndSave(paramtr, file)
@@ -45,30 +45,35 @@ function CheckVer(versus)
 	end
 end
 function main()
+while not isSampAvailable() do wait(100) end
 sendHttpRequestAndSave("Packages_cl.list", "moonloader/pack.list")
 numbers, packages_names = getLine('moonloader/pack.list')
-while not isSampAvailable() do wait(100) end
 if io.open("moonloader/local_repository.data", "r") ~= nil then
 	local _, package_names = getLine('moonloader/pack.list')
 	local _, package_names_l = getLine('moonloader/local_repository.data')
 	sampAddChatMessage("Checking for package updates!", 0x00ff00)
 	for i = 1, #package_names_l do
-		local _, name =  string.match(package_names[i], "(%S*)-(%S*)")
-		local _, name_l =  string.match(package_names_l[i], "(%S*)-(%S*)")
-		local ver1, ver2, ver3 = string.match(name, "(%d+)%.(%d+)%.(%d+)")
-		local ver1_l, ver2_l, ver3_l = string.match(name_l, "(%d+)%.(%d+)%.(%d+)")
-		 ver1, ver2, ver3 = ver1 or 0, ver2 or 0, ver3 or 0
-		 ver1_l, ver2_l, ver3_l = ver1_l or 0, ver2_l or 0, ver3_l or 0
-				if name == name_l and ver1 > ver1_l or ver2 > ver2_l or ver3 > ver3_l then
-				sampAddChatMessage("Update for package: "..package_names[i].." Local version: "..package_names_l[i], -1)
-				else
-				print("No updates available for package: ", package_names[i], package_names_l)
-				end
-	sampAddChatMessage("Update checking: ok", 0x00ff00)
+		if package_names[i] ~= nil and package_names_l[i] ~= nil then
+			package_names[i] = string.gsub(package_names[i], " ", "_")
+			sampAddChatMessage("Checking update for package: "..tostring(package_names[i]).." and compare local: "..tostring(package_names_l[i]), -1)
+			local _, name =  string.match(package_names[i], "(%S*)-(%S*)")
+			local _, name_l =  string.match(package_names_l[i], "(%S*)-(%S*)")
+			local ver1, ver2, ver3 = string.match(name, "(%d+)%.(%d+)%.(%d+)")
+			local ver1_l, ver2_l, ver3_l = string.match(name_l, "(%d+)%.(%d+)%.(%d+)")
+			 ver1, ver2, ver3 = ver1 or 0, ver2 or 0, ver3 or 0
+			 ver1_l, ver2_l, ver3_l = ver1_l or 0, ver2_l or 0, ver3_l or 0
+					if name == name_l and ver1 > ver1_l or ver2 > ver2_l or ver3 > ver3_l then
+					sampAddChatMessage("Update for package: "..package_names[i].." Local version: "..package_names_l[i], -1)
+					else
+					print("No updates available for package: ", package_names[i], package_names_l)
+					end
+		sampAddChatMessage("Update checking: ok", 0x00ff00)
+		end
 	end
 end
-sampAddChatMessage("LaineMoonloaderRepository", 0x00ff00)
-sampAddChatMessage("(C) 2018 by Laine_prikol kotik_prikol | Client version: dev-0.1 for dev-0.1s | For {808080}Blast{4993C5}.hk", -1)
+sampAddChatMessage("LaineMoonloaderRepository - Please report bugs on GitHub or Blast.hk thread", 0x00ff00)
+sampAddChatMessage("THIS IS ALPHA VERSION: It still has some incomplete features and bugs. At some point – sooner or later – it will probably break!", 0xffff00)
+sampAddChatMessage("(C) 2018 by Laine_prikol kotik_prikol | Client version: dev-0.3.1 for 0.0.5s | For {808080}Blast{4993C5}.hk", -1)
 sampAddChatMessage("Total packages: "..tostring(num), 0x00ff00)
 sampRegisterChatCommand("mr_install", lmr_install)
 sampRegisterChatCommand("packages_list", packages_list)

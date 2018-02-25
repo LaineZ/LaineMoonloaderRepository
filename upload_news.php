@@ -7,7 +7,7 @@ session_start();
 					if ($a == 0) {
 						echo "<p>Hacking attempt!</p>";
 					} else {
-			$up_template = "<div class='post'>
+					$up_template = "<div class='post'>
 					<div class='postheader'>
 					<h1>%s</h1>
 					</div>
@@ -17,8 +17,11 @@ session_start();
 					</div>
 					<div class='postfooter'></div>
 					</div>\n";
-					file_put_contents("news.list", sprintf($up_template, $_POST['name'], $_POST['content'], $_SESSION['login']), FILE_APPEND | LOCK_EX);
+					if(!file_put_contents("news.list", sprintf($up_template, $_POST['name'], $_POST['content'], $_SESSION['login']), FILE_APPEND | LOCK_EX)) {
+					header("Location: index.php?fcn=news_fail");
+					} else {
 					header("Location: index.php?fcn=news_up");
+					}
 					}
 				} else {
 				echo "<p>Unauthrized to use that!</p>";

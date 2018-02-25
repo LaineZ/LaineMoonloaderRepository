@@ -25,6 +25,7 @@
 <li><a href="index.php">All Packages</a></li>
 <li><a href="index.php?type=news">News</a></li>
 <li><a href="uploader.html">Uploader</a></li>
+<li><a href="user.php?fcn=manage">Your packages</a></li>
 </ul>
 </div>
 <div class="menufooter"></div>
@@ -35,30 +36,20 @@
 <div id="middle">
 <div class='post'>
 				<div class='postheader'>
-				<h1>Upload news</h1>
-				</div>
 				<?php
 				session_start();
-				require("functions.php");
-				if(isset($_SESSION['login'])) {
-				$a = ReadFileInfo("accounts/" . $_SESSION['login'] . ".user", 4);
-					if ($a == 0) {
-					echo "<p>Not allowed content for you!</p>";
-					} else {
-					echo '<div class="postcontent">
-					<form action="upload_news.php" method="post" enctype="multipart/form-data">
-						<p>Name:</p> <input size="32" type="text" name="name"> <br>
-						<p> News content:</p>
-						<p><textarea rows="10" cols="32" type="text" name="content"></textarea></p>
-						<br>
-						<input type="submit" value="Upload!" class="button">
-					</form>
-				</div>';
-					}
+				if(!isset($_GET['user'])) {
+				echo "<h1>" . $_SESSION['login'] . "</h1>";
 				} else {
-				echo "<p>Unauthrized to use that!</p>";
+				echo "<h1>" . $_GET['user'] . "</h1>";
 				}
 				?>
+				</div>
+				<div class='postcontent'>
+				<?php
+				echo "<p><strong>User info:</strong></p>";
+				?>
+				</div>
 				<div class='postfooter'></div>
 				</div>
 </div>
