@@ -126,6 +126,10 @@ function myFunction() {
 							echo '<div id="snackbar">Your account has been banned by the repository administrator!</div>';
 							echo "<script>myFunction()</script>";
 							}
+							if ($_GET['fcn'] == "up_fail2") { // lol
+							echo '<div id="snackbar">Upload error: cannot find download file or incorrect version format</div>';
+							echo "<script>myFunction()</script>";
+							}
 							if($_GET['fcn'] == "rep_p") {
 								if ($_GET['user'] !== $_SESSION['login']) {
 								SetupRepTimer(true);
