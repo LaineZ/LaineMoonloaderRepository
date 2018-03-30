@@ -19,7 +19,7 @@ Client written on SA Moonloader 0.25 and LuaSocket
 
 Version control/Autoupdate: 50% done
 
-**Install**
+**Install Server**
 the installation is stupidly simple.
 
 1. Clone this repository
@@ -27,3 +27,12 @@ the installation is stupidly simple.
 2. Create folders ``accounts`` and ``data`` in main repository folder
 
 3. Upload this on any hosting with PHP 5/7 support
+
+**Install Client** 
+Requires moonloader 0.25 or above (on older versions not tested but it should work)
+
+1. Download file ``client/LMR-Client.lua``
+
+2. Install LuaSocket in ``mooonloader/lib``
+
+3. Launch game! Enter chat command `mr_install package-version` to install packages!
