@@ -1,5 +1,8 @@
 LaineMoonloaderRepository (Project name)
 =======
+
+### this project is no longer maintained due to more usable **"dependency manager"** and also im abandoned PHP progamming for a long time
+
 A simple repository that was created specifically for the Moonloader. and allows you to download files, easy version control, easy customization of dependencies and **much more**.
 
 Server written on vanila version of PHP and without dependencies
